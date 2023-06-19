@@ -1,0 +1,84 @@
+{% extends "news/header.html" %}
+{%load static%}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailroutablepage_tags %}
+{% load static  %}
+{% block title %}{{self.title}} | Featured Events | Digital Times {%endblock%}
+{% block content %}
+
+<section class="contact-page-section">
+    <div class="container space-20 space-padding-tb-20 visible-lg-block visible-md-block visible-sm-block" style="margin-top:40px;">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'wagtail_serve' '' %}">Home</a></li>
+
+            <li><a href="{% slugurl 'featured-events' %}">Featured Events</a></li>
+
+            <li class="active">{{page.title|striptags }}</li>
+        </ul>
+    </div>
+    <div class="container space-20 space-padding-tb-20 visible-xs-block" style="margin-top:40px;">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'wagtail_serve' '' %}">Home</a></li>
+
+            <li><a href="{% slugurl 'featured-events' %}">Featured Events</a></li>
+
+            <li class="active">{{page.title|striptags }}</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="margin-top: 3rem;">
+                <div class="inner-container">
+                    <div class="row clearfix">
+
+                        <!--Form Column-->
+                        <div class="form-column col-md-12 col-sm-12 col-xs-12">
+                            <div class="inner-column">
+                                <div class="sec-title" style="margin-top: 30px;">
+                                    <div class="title">{{ page.title|striptags }}</div>
+                                    <div style="font-size: 16px!important;font-family: Lato,sans-serif;">
+                                        {{ self.thank_you_text|richtext }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><br /><br />
+                <span style="font-size:10px;">ADVERTISEMENT</span>
+                <div class="row" style="height: 280px!important">
+                    <div class="col-md-12">
+
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- Event Page -->
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1488438822864367"
+                            data-ad-slot="4190661643" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <!--side menu-->
+            <div class="col-md-4">
+                {%block widget%}
+
+                {% include 'news/sidebar.html' %}
+
+                {% include 'news/social_stats.html' %}
+
+                {%endblock%}
+            </div>
+            <!--end sidemenu-->
+        </div>
+    </div>
+</section>
+<!-- Back To Top Button -->
+<div id="back-to-top" title="Back To Top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+</div>
+<!-- Back To Top Button ends-->
+{% endblock %}
+{%block footer %}
+{% include 'news/privacy_pages/alt_footer.html' %}
+{%endblock%}

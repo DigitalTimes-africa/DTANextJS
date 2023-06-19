@@ -1,0 +1,578 @@
+{% extends "news/header.html" %}
+
+{%load static%}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailroutablepage_tags %}
+{% load static  %}
+
+{% block style %}
+<style>
+.overlay-top .images::before{z-index:1}.post-item .text{z-index:2}.owl-carousel .owl-controls .owl-nav .owl-next,.owl-carousel .owl-controls .owl-nav .owl-prev{width:50px;height:50px;background:rgba(255,255,255,.5);text-align:center;line-height:50px;display:inline-block;border-radius:50%;box-shadow:0 0 35px 0 rgb(22 12 96 / 9%);transition:box-shadow .4s}.owl-carousel .owl-controls .owl-nav .owl-prev{right:unset}.owl-carousel .owl-controls .owl-nav .owl-next i,.owl-carousel .owl-controls .owl-nav .owl-prev i{margin-top:15px;color:#000}#header-latest .owl-next{transform:translate3d(0,0,0)}#header-latest .owl-prev{transform:translate3d(-100%,0,0)}#header-latest .owl-next,#header-latest .owl-prev{opacity:100!important}@media screen and (min-width:1000px){#header-latest{width:100%!important}}
+</style>
+{% endblock %}
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+<div class="container space-20 space-padding-tb-20">
+    <ul class="breadcrumb">
+    </ul>
+</div>
+
+<div class="home2-head box nav-ver5">
+    <div class="owl-carousel">
+    {% for post in all_news_post.all.reverse|slice:"0:10" %}
+    {% image post.blog_image fill-800x570-c100 as blog_img %}
+   <div class="col-md-4 col-sm-4" id="header-latest"> 
+        <div class="post-item ver1 cat-1 overlay-top">
+            <a class="images" href="{% pageurl post %}">
+                <figure style="background-color: rgb(22 12 96 / 9%); background-size: 800px 570px;"><img class='img-responsive' src="{{blog_img.url}}"
+                        loading="lazy" alt="{{blog_img.alt}}"></figure>
+            </a>
+            <div class="text">
+                <h2><a href="{% pageurl post %}">{{post.title|striptags}}</a></h2>
+                <div class="tag">
+                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+            <!--startups-->
+            <div class="title-v1">
+                <h3>Entrepreneurship</h3>
+                <div class="orther-link">
+                    <ul>
+                        <li><a href="" title="All">All</a></li>
+                        <li><a href="{% routablepageurl news_page 'category_view' 'innovations' %}">Innovations</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="trending box space-30">
+                <div class="row">
+                    {% for post in entrepreneur.all.reverse|slice:"0:4" %}
+                    {% image post.blog_image fill-500x355-c100 as blog_img %}
+                    <div class="col-md-6 col-sm-6 space-30">
+                        <div class="post-item ver4 overlay-v2 cat-1">
+                            <a class="images" href="{% pageurl post %}">
+                                <figure><img class='img-responsive' src="{{blog_img.url}}" alt="{{blog_img.alt}}">
+                                </figure>
+                            </a>
+                            <div class="text">
+                                <h2><a href="{% pageurl post %}">{{post.title|striptags}}</a></h2>
+                                <div class="tag">
+                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End item -->
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+            <!--end startups-->
+
+            <!--Starts Advert Banner -->
+            <div style="height: 280px!important">
+                <div class="col-md-12 space-60" style="margin: 20px 10px;">
+                    <span style="font-size:10px;">ADVERTISEMENT</span>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Home Page Middle (a) -->
+                    <ins class="adsbygoogle horizontal-ad" style="display:block"
+                        data-ad-client="ca-pub-1488438822864367" data-ad-slot="5940154754" data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+            <!--end Advert Banner -->
+
+            <!--starts news-->
+            <div class="title-v1" style="margin-top: 20px;">
+                <h3>News</h3>
+                <div class="orther-link">
+                    <ul>
+                        <li><a href="{% routablepageurl news_page 'category_view' 'sponsored-content' %}">Sponsored Content</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="technology box space-30">
+                {% for post in news.all.reverse|slice:"0:2" %}
+                <div class="row" style="margin-bottom: 18px;">
+                    <div class="col-md-6">
+                        <div class="post-item ver2">
+                            {% image post.blog_image fill-500x355-c100 as blog_img %}
+                            <a class="news-images" href="{% pageurl post %}">
+                                <figure><img class="img-responsive" src="{{blog_img.url}}" alt="{{blog_img.alt}}">
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="post-item ver2">
+                            <div class="text" style="padding-top: 0px">
+                                <h2><a href="{% pageurl post %}"
+                                        style="font: 400 24px/22px 'Oswald';">{{post.title|striptags}}</a></h2>
+                                <div class="tag">
+                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+                                </div>
+                                <div style="font: 400 14px/20px 'Lato';color: #9a9a9a;">
+                                    <p class="description"> {{post.description|striptags|truncatewords:35}}
+                                        &nbsp;<a class="read-more" href="{% pageurl post %}" title="readMore">Read
+                                                More</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+
+            <!-- Ads -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1488438822864367"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-5q+d2+35-fq+b7"
+                data-ad-client="ca-pub-1488438822864367" data-ad-slot="9708084655"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <!-- Ads ends -->
+
+            <div class="technology box space-30">
+                {% for post in news.all.reverse|slice:"2:4" %}
+                <div class="row" style="margin-bottom: 18px;">
+                    <div class="col-md-6">
+                        <div class="post-item ver2">
+                            {% image post.blog_image fill-500x355-c100 as blog_img %}
+                            <a class="news-images" href="{% pageurl post %}">
+                                <figure><img class="img-responsive" src="{{blog_img.url}}" alt="{{blog_img.alt}}">
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="post-item ver2">
+                            <div class="text" style="padding-top: 0px">
+                                <h2><a href="{% pageurl post %}" style="font: 400 24px/22px 'Oswald';">{{post.title|striptags}}</a>
+                                </h2>
+                                <div class="tag">
+                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+                                </div>
+                                <div style="font: 400 14px/20px 'Lato';color: #9a9a9a;">
+                                    <p class="description"> {{post.description|striptags|truncatewords:35}}
+                                        &nbsp;<a class="read-more" href="{% pageurl post %}" title="readMore">Read
+                                            More</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+
+            <br />
+            <!--end news-->
+
+            <!--Starts Advert Banner -->
+            <!-- <div style="height: 280px!important"> -->
+                <div class="col-md-12 space-60" style="margin: 20px 10px;">
+                    <span style="font-size:10px;">ADVERTISEMENT</span>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Home Page Middle (a) -->
+                    <ins class="adsbygoogle horizontal-ad" style="display:block"
+                        data-ad-client="ca-pub-1488438822864367" data-ad-slot="5940154754" data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            <!-- </div> -->
+            <!--end Advert Banner -->
+
+            <!--tech world and Opportunities-->
+            <div class="box">
+                <div class="row">
+                    <!--Tech world-->
+                    <div class="col-md-6">
+                        <div class="title-v1">
+                            <h3>Tech World</h3>
+                        </div>
+                        <div class="box size-18 space-30">
+                            {% for post in tech_world.all.reverse|slice:"0:1" %}
+                            {% image post.blog_image fill-800x570-c100 as blog_img %}
+                            <div class="post-item ver3 overlay max-width-700">
+                                <div class="wrap-images">
+                                    <a class="images" href="{% pageurl post %}">
+                                        <figure><img class='img-responsive' src="{{blog_img.url}}"
+                                                alt="{{blog_img.alt}}">
+                                        </figure>
+                                    </a>
+                                    <div class="tag">
+                                        <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <h2><a href="{% pageurl post %}">{{post.title|striptags}}</a></h2>
+                                    <p>{{post.description|striptags|truncatewords:35}}&nbsp;<a class="read-more" href="{% pageurl post %}"
+                                            title="read more">read
+                                            more</a></p>
+
+                                </div>
+                            </div>
+                            {%endfor%}
+                            <!-- End item -->
+                        </div>
+
+                        <div class="row size-16">
+                            <div class="col-md-12 col-sm-6">
+                                {% for post in tech_world.all.reverse|slice:"1:4" %}
+                                {% image post.blog_image fill-800x570-c100 as blog_img %}
+                                <div class="post-item ver3 overlay">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="wrap-images">
+                                                <a class="images" href="{% pageurl post %}">
+                                                    <figure><img class='img-responsive' src="{{blog_img.url}}"
+                                                            alt="{{blog_img.alt}}"></figure>
+                                                </a>
+                                                <div class="tag">
+                                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text" style="padding-top: 0;">
+                                                <h2 style="margin-top: 0;"><a
+                                                        href="{% pageurl post %}">{{post.title}}</a></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <!--end tech world-->
+                    <!--Opportunities-->
+                    <div class="col-md-6">
+                        <div class="title-v1">
+                            <h3>Opportunities</h3>
+                        </div>
+
+                        <div class="box space-30 size-18">
+                            {% for fund in funding.all.reverse|slice:"0:1" %}
+                            {% image fund.blog_image fill-800x570-c100 as blog_img %}
+                            <div class="post-item ver3 overlay max-width-700">
+                                <div class="wrap-images">
+                                    <a class="images" href="{% pageurl fund %}">
+                                        <figure><img class='img-responsive' src="{{blog_img.url}}"
+                                                alt="{{blog_img.alt}}">
+                                        </figure>
+                                    </a>
+                                    <div class="tag">
+                                        <p class="date"><i class="fa fa-clock-o"></i>{{fund.date}}</p>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <h2><a href="{% pageurl fund %}">{{fund.title}}</a></h2>
+                                    <p>{{fund.description|striptags|truncatewords:35}}&nbsp;
+                                        <a class="read-more" href="{% pageurl fund %}" title="read more">read
+                                            more</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            {%endfor%}
+                            <!-- End item -->
+                        </div>
+                        <div class="row size-16">
+                            <div class="col-md-12 col-sm-6">
+                                {% for fund in funding.all.reverse|slice:"1:4" %}
+                                {% image fund.blog_image fill-800x570-c100 as blog_img %}
+                                <div class="post-item ver3 overlay">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="wrap-images">
+                                                <a class="images" href="{% pageurl fund %}">
+                                                    <figure><img class='img-responsive' src="{{blog_img.url}}"
+                                                            alt="{{blog_img.alt}}"></figure>
+                                                </a>
+                                                <div class="tag">
+                                                    <p class="date"><i class="fa fa-clock-o"></i>{{fund.date}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="text" style="padding-top: 0;">
+                                                <h2 style="margin-top: 0;"><a
+                                                        href="{% pageurl fund %}">{{fund.title}}</a></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                    <!--end Opportunities-->
+                </div>
+            </div>
+            <!--end tech world and opportunities-->
+
+            <!--Starts Advert Banner -->
+            <div class="googleAd">
+                <div class="col-md-12 space-60" style="margin: 20px 10px;">
+                    <span style="font-size:10px;">ADVERTISEMENT</span>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Home Page Middle (b) -->
+                    <ins class="adsbygoogle horizontal-ad" style="display:block;height: 280px"
+                        data-ad-client="ca-pub-1488438822864367" data-ad-slot="9113113005" data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+            <!--end Advert Banner -->
+
+            <!-- Start Fintech -->
+            <div class="title-v1">
+                <h3>Articles</h3>
+                <div class="orther-link">
+                    <ul>
+                        <li><a href="{% routablepageurl news_page 'category_view' 'press-release' %}">Press Release</a></li>
+                        <li><a href="{% routablepageurl news_page 'category_view' 'digital-creatives' %}">Digital Creatives</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="gaming box space-30">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% for post in articles.all.reverse|slice:"0:1" %}
+                        {% image post.blog_image fill-600x425-c100 as blog_img %}
+                        <div class="post-item ver3 overlay max-width-700">
+                            <div class="wrap-images">
+                                <a class="images" href="{% pageurl post %}">
+                                    <figure><img class='img-responsive' src="{{blog_img.url}}" alt="{{blog_img.alt}}">
+                                    </figure>
+                                </a>
+                                <div class="tag">
+                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <h2><a href="{% pageurl post %}">{{post.title|striptags}}</a></h2>
+                                <p>{{post.description|striptags|truncatewords:35}}&nbsp;
+                                    <a class="read-more" href="{% pageurl post %}" title="read more">read more</a>
+                                </p>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        <!-- End item -->
+                    </div>
+                    <div class="col-md-6">
+                        {% for post in articles.all.reverse|slice:"1:5" %}
+                        {% image post.blog_image fill-500x480-c100 as blog_img %}
+                        <div class="post-item ver2">
+                            <a class="images" href="{% pageurl post %}">
+                                <figure><img class='img-responsive' src="{{blog_img.url}}" alt="{{blog_img.alt}}">
+                                </figure>
+                            </a>
+                            <div class="text" style="padding-top: 0;">
+                                <h2 style="margin-top: 0;"><a href="{% pageurl post %}">{{post.title|striptags}}</a>
+                                </h2>
+                                <div class="tag">
+                                    <p class="date"><i class="fa fa-clock-o"></i>{{post.first_published_at}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+            <!-- End Fintech -->
+        </div>
+
+        <!--side menu-->
+        <div class="col-md-4">
+            {%block widget%}
+
+            {% include 'news/sidebar_homepage.html' %}
+
+            {% include 'news/social_stats.html' %}
+
+            {%endblock%}
+        </div>
+    </div>
+    <!--end sidemenu-->
+</div>
+
+<!-- Ad Banner (fill-1990x250-c100 when oncustom display) -->
+<div class="banner col-md-12 center space-60" style="margin: 20px 10px;">
+    <span style="font-size:10px;">ADVERTISEMENT</span>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Home Page Bottom Longest -->
+    <ins class="adsbygoogle horizontal-ad-long" style="display:block" data-ad-client="ca-pub-1488438822864367"
+        data-ad-slot="3669214635" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    
+</div><br /><br />
+<!-- Ad Banner -->
+</div>
+
+<div class="wrap-slide-youtube box float-left" id="ycontainer">
+
+    <div class="container" id="ycontainer">
+        <div class="title-v2">
+            <h3>VIDEOS</h3>
+        </div>
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" style="bottom: -50px!important;">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
+                <li data-target="#myCarousel" data-slide-to="7"></li>
+                <li data-target="#myCarousel" data-slide-to="8"></li>
+                <li data-target="#myCarousel" data-slide-to="9"></li>
+                <li data-target="#myCarousel" data-slide-to="10"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                {% for video in dta_videos.all.reverse|slice:"0:10" %}
+                {% if forloop.counter == 1 %}
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- <div class="col-md-6 embed-responsive embed-responsive-16by9"> -->
+                            {% image video.video_thumbnail scale-100 as banner %}
+                            <a href="{% pageurl video %}">
+                                <img src="{{ banner.url }}" alt="Image" class="img-responsive"></a>
+                            <div class="vid-tag-middle"><a href="{% pageurl video %}" title="play video"
+                                    class="vid-play-icon"><i class="fa fa-play"></i>
+                                </a></div>
+                        </div>
+                        <div class="col-md-6">
+
+
+                            <div class="vid-caption">
+                                <h2><a href="{% pageurl video %}" style="color: white;">{{video.title|striptags}}</a>
+                                </h2>
+                                <a href="{% pageurl video %}">
+                                    <summary style="color: white;font-family: 'Lato'!important;">
+                                        {{video.description|striptags|truncatewords:30}}</summary>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% image video.video_thumbnail scale-100 as banner %}
+                            <a href="{% pageurl video %}">
+                                <img src="{{ banner.url }}" alt="Image" class="img-responsive"></a>
+                            <div class="vid-tag-middle"><a href="{% pageurl video %}" title="play video"
+                                    class="vid-play-icon"><i class="fa fa-play"></i>
+                                </a></div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="vid-caption">
+                                <h2><a href="{% pageurl video %}" style="color: white;">{{video.title|striptags}}</a>
+                                </h2>
+                                <a href="{% pageurl video %}">
+                                    <summary style="color: white;font: 400 16px/25px Lato;">
+                                        {{video.description|striptags|truncatewords:30}}</summary>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 40px">
+            <div class="widget video-widget" style="padding: 0 20px;">
+                <h3 class="widget-title" style="color: #CACACA!important;">Latest Videos</h3>
+            </div>
+            {% for video in dta_videos.all.reverse|slice:"0:3" %}
+            <div class="col-md-4" style="margin-bottom: 20px;">
+                <div class="watch-it">
+                    <span class="watch-it-inner">
+
+                    </span>
+                </div>
+                <div class="card h-150">
+                    {% image video.video_thumbnail scale-100 as banner %}
+                    <div class="post-item ver1 vid-side">
+                        <a class="images vid-img" href="{% pageurl video %}" title="video"><img class="img-responsive"
+                                src="{{banner.url}}" alt="video" /></a>
+
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="back-to-top" title="Back To Top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+</div>
+<!-- Back To Top Button ends-->
+
+{% endblock %}
+
+{%block footer %}
+{%include 'news/footer.html' %}
+{%endblock%}
+
+{%block js%}
+<script>
+    $(document).ready(function (){$(".owl-carousel").owlCarousel({navText: ["<i class='fas fa-arrow-left' style='color: #000e1e;'></i>","<i class='fas fa-arrow-right' style='color: #000e1e;'></i>"],mouseDrag:true,touchDrag:true,responsive:{0:{items:1,nav:true,loop:true},600:{items:1,nav:true,loop:true},1000:{items:3,nav:false,loop:true}}})});
+  </script>
+{%endblock%}

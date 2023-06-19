@@ -1,0 +1,113 @@
+{%block footer_section %}
+{% load wagtailroutablepage_tags wagtailcore_tags wagtailimages_tags %}
+{%load static%}
+<footer id="footer" class="footer-v1">
+  <div class="container" id="footercontainer">
+    <div class="row">
+      <div class="col-md-3">
+        <a class="logo-footer space-30" href="#" title="logo" id="about"><img
+            src="{% static '/images/LogoFooter.png' %}" alt="Logo-footer"></a>
+        <p class="space-30">Digital Times Africa is a mediatech company that focuses on elevating
+Africa’s tech, innovation and entrepreneurship scene through digital
+storytelling, PR and branding services.</p>
+        <div class="widget footer-info">
+          <h3 class="widget-title">main office</h3>
+          <address>
+          <ul>
+            <li><i class="fa fa-home"></i><a href="https://goo.gl/maps/7SScPPR6QCcdGG8z5" alt="map"
+              target="_blank">GM-057-7751, 14 Bombay St. - Accra</a></li>
+            <li><i class="fa fa-phone-square"></i><a href="tel:+233302261832" alt="telephone"> Tel : +233 30 226
+                1832</a> </li>
+            <li><i class="fa fa-envelope"></i> <a href="mailto:operations@digitaltimes.africa" title="link">E-mail :
+                operations@digitaltimes.africa</a></li>
+          </ul>
+        </address>
+        </div>
+        <!-- End widget -->
+
+        <!-- Social -->
+        <div class="social">
+          <a href="https://facebook.com/DigitalTimesAfrica/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://twitter.com/DigitalTAfrica" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/digitaltimesafrica/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCsLA-rwLOHa0w6EIC6SLM8w" target="_blank"><i
+              class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/company/digitaltimesafrica/" target="_blank"><i
+            class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Social End -->
+
+        <!-- Subscribe -->
+        <div class="footer-subscribe">
+          {% include 'news/layout/footer_subscribe.html' %}
+        </div>
+        <!-- End Subscribe -->
+      </div><br />
+
+      <div class="col-md-4">
+        <div class="widget recent-posts">
+          <h3 class="widget-title">Recent posts</h3>
+          <ul>
+            {% for post in recent_posts.all.reverse|slice:"0:4" %}
+            {% image post.blog_image fill-400x400-c100 as blog_img %}
+            <li class="item-private ">
+              <div class="row">
+                <div class="col-md-6 col-xs-6">
+                  <div class="images">
+                    <a href="{% pageurl post %}">
+                      <figure>
+                      <img class="img-responsive" src="{{blog_img.url}}"
+                        alt="{{blog_img.alt}}">
+                      </figure>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xs-6">
+                  <div class="text" style="padding-top: 0;">
+                    <h3 class="title" style="margin-top: 0;"><a href="{% pageurl post %}">{{post.title|striptags}}</a></h3>
+                    <div class="tags">
+                      <p class="date"><i class="fa fa-clock-o"></i>{{post.date|date:"M. d, Y"}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End blog-text -->
+            </li>
+            {%endfor%}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="widget categories">
+          <h3 class="widget-title">CATEGORIES</h3>
+          <ul>
+            {%for cat in categories %}
+            <li><a href="https://www.digitaltimes.africa/category/{{cat.slug}}">{{cat.name|striptags}}</a></li>
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container" id="bottomcontainer">
+      <p class="float-left">Copyright &copy;<span id="year"></span> <a href="" title="EngoTheme">Digital Times
+          Africa</a> - All rights reserved.</p>
+      <!----- Footer year update code----->
+      <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+      </script>
+
+      <div class="float-right align-right">
+        <ul class="menu-footer">
+          <li><a href="/terms" title="Term" target="_blank">Term</a></li>
+          <li><a href="/privacy" title="Privacy" target="_blank">Privacy</a></li>
+          <li><a href="/cookie-policy" target="_blank" title="Cookies Policy">Cookies</a></li>
+          <li><a href="#about" title="About">About</a></li>
+          <li><a href="mailto:operations@digitaltimes.africa" title="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+{%endblock%}

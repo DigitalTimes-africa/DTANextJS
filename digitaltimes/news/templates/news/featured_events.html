@@ -1,0 +1,270 @@
+{% extends "news/header.html" %}
+
+{%load static%}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailroutablepage_tags %}
+{% load static  %}
+{% block title %} Events | Digital Times {%endblock%}
+{% block style %}
+<link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+{% endblock %}
+{% block content %}
+
+<div id="featured-slider" style="height:550px">
+	{% for event in upcoming.all.reverse|slice:"0:5" %}
+	{% image event.event_image scale-150 as event_img %}
+	<div class="featured-slide">
+		<a href="{% pageurl event %}">
+			<div class="main"
+				style="background: url('{{event_img.url}}') rgba(0,0,0,0.5) no-repeat center;background-size: cover;font-family: 'Oswald';">
+				<div class="container" style="background-color:transparent!important">
+					<div class="row" style="margin-top: 20px; margin-left: 10px;">
+						<div class="col-md-5">
+							<p class="date">{{event.event_start_month}} &nbsp;
+								{{event.event_start_day}}, &nbsp;
+								{{event.event_start_year}}{% if event.event_end_month %}&nbsp;
+								-
+								&nbsp;{{event.event_end_month}}
+								&nbsp; {{event.event_end_day}}, &nbsp;
+								{{event.event_end_year}}{%endif%}</p>
+							<h2><span>{{event.title|striptags}}</span></h2>
+							<p style="font-family: 'Lato', sans-serif;">{{event.summary}}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+	{%endfor%}
+</div>
+
+
+<div class="container">
+	<div class="row"><br /><br /><br />
+		<div class="col-md-8" style="font-family:'Lato';color: #9a9a9a; ">
+			<div class="supporting">
+				<div class="row" style="margin:25px 0 50px">
+					<div class="col-md-7" style="padding: 20px 40px 40px 40px!important;background: #F5F5F5">
+						<h3 style="font-family:'Oswald';color:#333333;">Upcoming Events</h3>
+						{% for event in upcoming.all.reverse|slice:"0:2" %}
+						<ul>
+							<li>
+								<p class="date">
+									{{event.event_start_month}}&nbsp;{{event.event_start_day}},&nbsp;{{event.event_start_year}}{% if event.event_end_month %}&nbsp;
+									- &nbsp;{{event.event_end_month}} &nbsp;
+									{{event.event_end_day}}, &nbsp;
+									{{event.event_end_year}}{%endif%}
+								</p>
+								<a href="{{event.url}}">
+									<h4><span>{{event.title|striptags}}</span></h4>
+								</a>
+							</li>
+						</ul>
+						{%endfor%}
+
+
+					</div>
+					<div class="col-md-5 sidebar" style="padding: 20px 40px 40px 40px!important;background: #152230;">
+						<h3 style="font-family:'Oswald';">Partner Events</h3>
+						{% for event in partnered.all.reverse|slice:"0:2" %}
+						<ul>
+							<li>
+								<p class="date" style="color: #ffff;">
+									{{event.event_start_month}}&nbsp;{{event.event_start_day}},&nbsp;{{event.event_start_year}}{% if event.event_end_month %}&nbsp;
+									- &nbsp;{{event.event_end_month}} &nbsp;
+									{{event.event_end_day}}, &nbsp;
+									{{event.event_end_year}}{%endif%}
+								</p>
+								<a href="{{event.url}}">
+									<h4><span>{{event.title|striptags}}</span></h4>
+								</a>
+							</li>
+						</ul>
+						{%endfor%}
+					</div>
+				</div>
+				<div style="height: 280px!important">
+
+					<div class="row ">
+						<div class="col-md-12">
+							<span style="font-size:10px;">ADVERTISEMENT</span>
+
+							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+							</script>
+							<!-- Event Page -->
+							<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1488438822864367"
+								data-ad-slot="4190661643" data-ad-format="auto" data-full-width-responsive="true"></ins>
+							<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="container"> -->
+
+			<div class="wrapper-events" style="margin-bottom: 50px;">
+
+				<h1 class="section-title"><span style="font-family:'Oswald';color:#333333; ">Upcoming
+						Events</span></h1>
+				{% for event in events.all.reverse|slice:"0:1" %}
+				<!-- first item, not featured, no date range -->
+				<div class="event-list-item navy">
+					<div class="event-info starter-1">
+						<div class="event-info-extras">
+						{% if event.arrange_event_start_date|date:"YmdHis" > todayDate|date:"YmdHis" %}
+							<a href="{{event.registration_url}}"><span class="free"></span></a>
+						{% else %}
+							<a href="#"><span class="past"></span></a>
+						{% endif %}
+						</div>
+						<div class="event-date">
+							<p class="event-start">
+								{{event.event_start_month|upper|slice:"0:3"}}<br />{{event.event_start_day}}
+							</p>
+							{% if event.event_end_month %}<p class="event-end">
+								{{event.event_end_month|upper|slice:"0:3"}}<br />{{event.event_end_day}}
+							</p>{%endif%}
+						</div>
+						<div class="event-description">
+							<div class="event-header">
+								<a href="{% pageurl event %}">
+									<h1 class="event-title">{{ event.title|striptags }}</h1>
+									<h3 class="event-title">{{ event.event_name }}
+										</h1>
+								</a>
+								<p class="event-location">{{event.location}}</p>
+								<p class="event-time">
+									{{event.event_start_time}}{% if event.event_end_time %}&nbsp;-&nbsp;{{event.event_end_time}}{%endif%}
+								</p>
+							</div>
+							<div class="event-excerpt">
+								<p>{{event.description|truncatewords:50}} <a href="{% pageurl event %}"
+										class="more">view
+										event</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{% image event.event_display_page_image fill-750x300-c100 as event_img %}
+			<img class="event-image img-responsive" src="{{event_img.url}}" />
+			{% endfor %}
+
+			<!-- second item, not featured, no date range teal-->
+			{% for event in events.all.reverse|slice:"1:2" %}
+			<div class="event-list-item teal">
+				<div class="event-info">
+					<div class="event-info-extras">
+						{% if event.arrange_event_start_date|date:"YmdHis" > todayDate|date:"YmdHis" %}
+							<a href="{{event.registration_url}}"><span class="free"></span></a>
+						{% else %}
+							<a href="#"><span class="past"></span></a>
+						{% endif %}
+					</div>
+					<div class="event-date">
+						<p class="event-start">
+							{{event.event_start_month|upper|slice:"0:3"}}<br />{{event.event_start_day}}
+						</p>
+						{% if event.event_end_month %}<p class="event-end">
+							{{event.event_end_month|upper|slice:"0:3"}}<br />{{event.event_end_day}}
+						</p>{%endif%}
+					</div>
+					<div class="event-description">
+						<div class="event-header">
+							<a href="{% pageurl event %}">
+								<h1 class="event-title">{{ event.title|striptags }}</h1>
+								<h3 class="event-title">{{ event.event_name }}</h1>
+							</a>
+							<p class="event-location">{{event.location}}</p>
+							<p class="event-time">
+								{{event.event_start_time}}{% if event.event_end_time %}&nbsp;-&nbsp;{{event.event_end_time}}{%endif%}
+							</p>
+						</div>
+						<div class="event-excerpt">
+							<p>{{event.description|truncatewords:50}} <a href="{% pageurl event %}" class="more">view
+									event</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{%endfor%}
+
+		<!-- second item, not featured, with date range -->
+		{% for event in events.all.reverse|slice:"2:" %}
+		<div class="event-list-item teal">
+			<div class="event-info">
+				<div class="event-info-extras">
+					{% if event.arrange_event_start_date|date:"YmdHis" > todayDate|date:"YmdHis" %}
+						<a href="{{event.registration_url}}"><span class="free"></span></a>
+					{% else %}
+						<a href="#"><span class="past"></span></a>
+					{% endif %}
+				</div>
+				<div class="event-date">
+					<p class="event-start">
+						{{event.event_start_month|upper|slice:"0:3"}}<br />{{event.event_start_day}}
+					</p>
+					{% if event.event_end_month %}<p class="event-end">
+						{{event.event_end_month|upper|slice:"0:3"}}<br />{{event.event_end_day}}
+					</p>{%endif%}
+				</div>
+				<div class="event-description">
+					<div class="event-header">
+						<a href="{% pageurl event %}">
+							<h1 class="event-title">{{ event.title|striptags }}</h1>
+							<h3 class="event-title">{{ event.event_name }}</h1>
+						</a>
+						<p class="event-location">{{event.location}}</p>
+						<p class="event-time">
+							{{event.event_start_time}}{% if event.event_end_time %}&nbsp;-&nbsp;{{event.event_end_time}}{%endif%}
+						</p>
+					</div>
+					<div class="event-excerpt">
+						<p>{{event.description|truncatewords:50}} <a href="{% pageurl event %}" class="more">view
+								event</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{%endfor%}
+	<!-- </div> -->
+</div>
+
+</div>
+
+<!--side menu-->
+<div class="col-md-4">
+	{%block widget%}
+
+	{% include 'news/sidebar.html' %}
+
+	{% include 'news/social_stats.html' %}
+
+	{%endblock%}
+</div>
+<!--end sidemenu-->
+</div>
+
+</div>
+
+<!-- Back To Top Button -->
+<div id="back-to-top" title="Back To Top">
+	<i class="fas fa-long-arrow-alt-up" title="Back To Top"></i>
+</div>
+<!-- Back To Top Button ends-->
+{% endblock %}
+
+{%block footer %}
+{%include 'news/footer.html' %}
+{%endblock%}

@@ -1,0 +1,49 @@
+.legal-styles h1,
+.legal-styles h2,
+.legal-styles h3,
+.legal-styles h4,
+.legal-styles h5,
+.legal-styles h6 {
+  line-height: 2;
+}
+
+.legal-styles h1 {
+    font-size: 2.25rem;
+}
+
+.legal-styles h2 {
+    font-size: 2rem;
+}
+  
+.legal-styles h3{
+    font-size: 1.75rem;
+}
+
+.legal-styles h4 {
+    font-size: 1.5rem;
+}
+
+.legal-styles h5 {
+    font-size: 1.25rem;
+}
+
+.legal-styles h6 {
+    font-size: 1rem;
+}
+
+.legal-styles p {
+    padding-bottom: 1rem;
+}
+
+.legal-styles ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.legal-styles ul li {
+    padding-bottom: 0.75rem;
+}
+
+.legal-styles ul li span {
+    line-height: 2;
+}

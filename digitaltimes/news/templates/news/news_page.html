@@ -1,0 +1,227 @@
+{% extends "news/news_index_page.html" %}
+{% block style %}
+<style>
+    .content ul,ol{font:400 16px/25px Lato;color:#555;margin-bottom:15px}.content ul li{list-style:disc;margin-left:50px}.content ol li{list-style:decimal}.widget-title{margin-top:0 !important}.tag-cat a:hover{color:#0add08}@media screen and (max-width:992px){.contributor{text-align:center}}.content iframe{width:100%;height:390px}.content h4{font-size:24px}.content h4 a:link{color:#000}.content h4 a:hover{color:#0add08}
+</style>
+{%endblock%}
+{% load wagtailcore_tags  wagtailroutablepage_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+{%load static%}
+{% include_block page.body %}
+{% block body_class %}template-blogpage{% endblock %}
+{% block title %}{{self.title}} | Digital Times {%endblock%}
+{% block content %}
+<div class="container space-20 space-padding-tb-20 visible-lg-block visible-md-block visible-sm-block">
+    <ul class="breadcrumb">
+    </ul>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" style="margin-top: 10px;">
+            <div class="single-post">
+                <div class="blog-post-item cat-1 box">
+                    <figure class="blog-post-images">
+                        {% image self.blog_image max-770x480 as banner  %}
+                        <a class="hover-images" href="" title="Post Image"><img class="img-responsive"
+                                src="{{banner.url}}" alt="{{banner.alt}}"></a>
+
+                        {% if page.image_description %}
+                        <figcaption class="text-capitalize"><i>{{page.image_description}}</i></figcaption>
+                        {%endif%}
+
+                    </figure>
+
+                    <div class="content">
+                        <h3>{{ page.title|striptags }}</h3>
+                        <div class="tag">
+                            {% for cat in self.categories.all%}
+                            <p class="label"><a href="{% routablepageurl news_page 'category_view' cat.slug %}"
+                                    style="color:white;">{{cat.name|striptags}}</a></p>
+                            {%endfor%}
+                            <p class="date"><i class="fa fa-clock-o"></i>{{page.first_published_at}}</p>
+                        </div>
+                        <p> {% for block in self.content %}
+                            {% include_block block %}
+                            {% endfor %}
+                        </p>
+                        <!-- Contributor starts  -->
+
+                        <div class="contributor">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <span class="contrib-p">Do you have an article that can be relevant to the African
+                                        Tech space?</span><br /><br />
+                                    <span>Submit your news stories, articles or press releases to <strong><a
+                                                href="mailto:editor@digitaltimes.africa" style="cursor:pointer;"
+                                                class="">editor@digitaltimes.africa</a></strong></span>
+                                </div>
+                                <span class="visible-sm-block visible-xs-block"
+                                    style="color: #fff;text-align: center;"><br /><br />Or</span>
+                                <div class="col-md-3 butn">
+                                    <a class="btn" target="_blank" href="https://bit.ly/3rp8x1I"><strong>Fill the
+                                            form</a></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ads Starts -->
+
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1488438822864367"
+                            crossorigin="anonymous"></script>
+                        <ins class="adsbygoogle"
+                            style="display:block; text-align:center;"
+                            data-ad-layout="in-article"
+                            data-ad-format="fluid"
+                            data-ad-client="ca-pub-1488438822864367"
+                            data-ad-slot="2520957953"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+
+                        <!-- Ads End -->
+
+                        <!-- Contributor Ends -->
+                        <p>
+                            {% include 'news/layout/related_posts.html' %}
+                        </p>
+
+                        {%if page.paragraph_2%}
+                        <p> {{page.paragraph_2}}</p>
+                        {%endif%}
+
+                    </div>
+                    <!-- share buttons start -->
+                    <div id="share">
+
+                        <!-- facebook -->
+                        <a class="facebook-share"
+                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.digitaltimes.africa{{ page.url }}%2F&display=popup&ref=plugin&src=like&kid_directed_site=0"
+                            target="blank"><i class="fab fa-facebook-f"></i></a>
+
+                        <!-- twitter -->
+                        <a class="twitter"
+                            href="https://twitter.com/share?text=&url={{ page.title}}+https://www.digitaltimes.africa{{ page.url }}"
+                            target="blank"><i class="fab fa-twitter"></i></a>
+
+                        <!-- email -->
+                        <a class="email"
+                            href="mailto:?subject=Digital Times:{{ page.title}}&body=https://www.digitaltimes.africa{{ page.url }}"
+                            target="blank"><i class="fa fa-envelope"></i></a>
+
+                        <!-- whatsapp -->
+                        <a class="whatsapp"
+                            href="https://api.whatsapp.com/send?text={{ page.title }}+https://www.digitaltimes.africa{{ page.url }}"
+                            target="blank"><i class="fab fa-whatsapp"></i></a>
+
+                        <!-- linkedin -->
+                        <a class="linkedin"
+                            href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.digitaltimes.africa{{ page.url }}&title={{ page.title }}&summary={{ page.description|striptags|truncatewords:40 }}&source=Digital_Times"
+                            target="blank"><i class="fab fa-linkedin-in"></i></a>
+
+                        <!-- Reddit -->
+                        <a class="reddit" href="http://reddit.com/submit?url=https://www.digitaltimes.africa{{ page.url }}&title={{ page.title }}" target="_blank"><i class="fab fa-reddit-alien"></i></a>
+                    </div>
+                    <!-- share buttons end -->
+                    <!-- Ad Starts -->
+                    <span style="font-size:10px;">ADVERTISEMENT</span>
+                    <div class="googleAd">
+                        <div class="col-md-12 space-60" style="margin: 20px 20px;">
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- News Page -->
+                            <ins class="adsbygoogle horizontal-ad" style="display:block;height: 90px"
+                                data-ad-client="ca-pub-1488438822864367" data-ad-slot="2090261851" data-ad-format="auto"
+                                data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                    </div>
+                    <!-- Ad Ends -->
+                    <!-- post Tags -->
+                    {% if page.tags.all.count %}
+                    <p class="tag-cat"><span>tag:</span>
+                        {% for tag in page.tags.all %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}" title="Tags" class="text-capitalize">{{ tag }}</a>,
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+                    <!-- End Post tags -->
+
+                    <!-- Author Section -->
+                    {% if page.news_source %}
+                    <div class="box-user space-padding-tb-40" style="margin-bottom: 20px;">
+                        <div class="box">
+
+                            <div class="text">
+                                {%if page.guest_writer_name %}
+                                <h3>{{page.guest_writer_name}} <span class="user-level">Guest Author</span></h3>
+                                <p>{{page.news_source}}</p>
+                                {% else %}
+                                <h3>{{page.news_source}} <span class="user-level">Source</span></h3>
+                                {%endif%}
+
+                            </div>
+                        </div>
+                    </div>
+                    {%else%}
+                    {%for iter in self.news_authors.all%}
+                    <div class="box-user space-padding-tb-40" style="margin-bottom: 20px;">
+                        <div class="box">
+                            <div class="avatar">
+                                {% image iter.author.image fill-300x300-c100 as au_img %}
+                                <img class="img-responsive" src="{{au_img.url}}" alt="{{au_img.alt}}">
+
+                            </div>
+                            <div class="text">
+                                <h3>{{iter.author.name}} <span class="user-level">Author</span></h3>
+                                <p>{{iter.author.description}}</p>
+                                <div class="social">
+                                    <a href="mailto:{{iter.author.email}}" title="social"><i
+                                            class="fa fa-envelope"></i></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                    {%endif%}
+                    <!--End Author Section -->
+
+                    <!-- Ad Starts -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1488438822864367"
+                        crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-format="autorelaxed"
+                        data-ad-client="ca-pub-1488438822864367"
+                        data-ad-slot="9974514241"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    <!-- Ad Ends -->
+
+                </div>
+            </div>
+        </div>
+
+        <!--side menu-->
+        <div class="col-md-4">
+            {%block widget%}
+
+            {% include 'news/sidebar.html' %}
+
+            {% include 'news/social_stats.html' %}
+
+            {%endblock%}
+        </div>
+        <!--end sidemenu-->
+    </div>
+</div>
+
+<!-- Back To Top Button -->
+<div id="back-to-top" title="Back To Top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+</div>
+<!-- Back To Top Button ends-->
+{%endblock%}

@@ -1,0 +1,29 @@
+{% block social %}
+{% for social_stat in social_stats.all.reverse|slice:"0:1" %}
+<aside class="widget social">
+    <div class="item facebook">
+        <div class="bg">
+            <i class="fab fa-facebook-f"></i>
+            
+            <p class="count">{{social_stat.facebook}}</p>
+           
+            <p class="text">Fans</p>
+        </div>
+    </div>
+    <div class="item twitter">
+        <div class="bg">
+            <i class="fab fa-twitter"></i>
+            <p class="count">{{social_stat.twitter}}</p>
+            <p class="text">Followers</p>
+        </div>
+    </div>
+    <div class="item google">
+        <div class="bg">
+            <i class="fab fa-instagram"></i>
+            <p class="count">{{social_stat.instagram}}</p>
+            <p class="text">Followers</p>
+        </div>
+    </div>
+</aside>
+{%endfor%}
+{% endblock %}

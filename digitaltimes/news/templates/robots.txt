@@ -1,0 +1,4 @@
+Disallow: /admin/
+
+# Sitemap files
+Sitemap: {{ request.site.root_url }}/sitemap.xml

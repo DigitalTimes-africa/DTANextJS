@@ -1,0 +1,30 @@
+
+{%load static%}
+<div class="newsletter col-md-3 col-sm-6 col-xs-6">
+  <p>Newsletter</p>
+  <h4>Subscribe and get the latest news &amp; update</h4>
+{% for subscribe_form in form_email %}
+  <form method="POST" class="searchform your" id="subscribe-form" action="{% url 'subscribe' %}"
+    role="search" >{% csrf_token %}
+    <div class="invalid-feedback">{{ subscribe_form.error_messages }}</div>
+    <input type="hidden" name="type" value="product">
+    <input type="{{ subscribe_form.field.widget.input_type }}" name="{{ subscribe_form.name }}" placeholder="Your email " id="{{ subscribe_form.id_for_label }}-footer"
+    class="form-control control-search"  {% if subscribe_form.field.required %} required="required" {% endif %} autocomplete="email"
+          enterkeyhint="done">
+    <span class="input-group-btn">
+      <button class="btn btn-default button_search" type="submit"><span></span></button>
+    </span>
+    <br />
+    <button class="subs button_see" id="submit-email">subscribe <span class="xoay"></span><span></span></button>
+  </form>
+  {% endfor %}
+  
+<p>{% if messages %}
+<ul class="messages mess-text">
+  {% for message in messages %}
+  <script>swal({ title: 'Confirmation Message', text: '{{message}}', button: 'OK', });</script>
+  {% endfor %}
+</ul>
+{% endif %}</p>
+</div>
+
