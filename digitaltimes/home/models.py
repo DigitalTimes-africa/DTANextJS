@@ -12,10 +12,11 @@ import datetime
 from django import forms
 
 from streams import blocks
-from schedule import every, repeat, run_pending
-import threading
-import schedule
-import time
+
+# from schedule import every, repeat, run_pending
+# import threading
+# import schedule
+# import time
 
 
 class NewsIndexPage(RoutablePageMixin, Page):
