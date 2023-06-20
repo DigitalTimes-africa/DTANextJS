@@ -89,10 +89,20 @@ WSGI_APPLICATION = "digitaltimes.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '/cloudsql/dt-website-388013:us-west1:dta-mysql-instance',
+        'NAME': 'dtasystemdb',
+        'USER': 'software',
+        'PASSWORD': 'digitaltimesafrica2023',
     }
 }
 
