@@ -5,7 +5,7 @@ import PostContentSection from "@/components/sections/PostContentSection";
 import PostNewsHeadingSection from "@/components/sections/PostNewsHeadingSection";
 import ReadNextSection from "@/components/sections/ReadNextSection";
 import AdLongBottomSection from '@/components/adsections/AdLongBottomSection'
-import "./styles/postStyles.css"
+import "../styles/postStyles.css"
 
 export default function SinglePost() {
     return(

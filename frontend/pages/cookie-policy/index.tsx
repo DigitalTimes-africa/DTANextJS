@@ -1,7 +1,7 @@
 import RootLayout from "@/app/layout";
 import Heading from "@/components/layout/Heading";
 import Link from "next/link";
-import "./styles/legalStyles.css"
+import "../styles/legalStyles.css"
 
 export default function CookiePolicy() {
     return(
@@ -12,8 +12,9 @@ export default function CookiePolicy() {
                     <div className="mb-20 pt-12">
                         <div className="flex flex-row justify-center">
                             <div className="xmd:w-8/12 xsm:w-10/12 legal-styles">
+                            <div className="container 2xsm:mx-4 mx-auto">
                                 <h1 className="text-5xl text-center pb-10">Cookies Policy</h1>
-                                <p className="text-xs pb-4">Last updated: March 07, 2023</p>
+                                <p className="text-sm pb-4">Last updated: March 07, 2023</p>
                                 <p className="pt-4">This Cookies Policy explains what Cookies are and how We use them. You should read this policy so You can
                                     understand what type of cookies We use, or the information We collect using Cookies and how that information is
                                     used. This Cookies Policy has been created with the help of the <Link
@@ -164,6 +165,7 @@ export default function CookiePolicy() {
                                 <h2>Contact Us</h2> 
                                 <p>If you have any questions about this Cookies Policy, You can contact us:</p>
                                 <p>By email: operations@digitaltimes.africa</p>
+                                </div>
                             </div>
                         </div>
                     </div>

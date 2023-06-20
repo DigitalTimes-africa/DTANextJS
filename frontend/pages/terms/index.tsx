@@ -1,7 +1,7 @@
 import RootLayout from "@/app/layout";
 import Heading from "@/components/layout/Heading";
 import Link from "next/link";
-import "./styles/legalStyles.css"
+import "../styles/legalStyles.css"
 
 export default function Terms() {
     return(
@@ -12,8 +12,9 @@ export default function Terms() {
                     <div className="mb-20 pt-12">
                         <div className="flex flex-row justify-center">
                             <div className="xmd:w-8/12 xsm:w-10/12 legal-styles">
+                                <div className="container 2xsm:mx-4 mx-auto">
                                 <h1 className="text-5xl text-center pb-10">Terms and Conditions</h1>
-                                <p className="text-xs pb-4">Last updated: March 07, 2023</p> 
+                                <p className="text-sm pb-4">Last updated: March 07, 2023</p> 
                                 <p className="pt-4">Please read these terms and conditions carefully before using Our Service.</p> 
                                 <h1>Interpretation and Definitions</h1> 
                                 <h2>Interpretation</h2> 
@@ -184,6 +185,7 @@ export default function Terms() {
                                 <ul>
                                     <li>By email: operations@digitaltimes.africa</li>
                                 </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

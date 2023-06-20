@@ -1,7 +1,7 @@
 import RootLayout from "@/app/layout";
 import Heading from "@/components/layout/Heading";
 import Link from "next/link";
-import "./styles/legalStyles.css"
+import "../styles/legalStyles.css"
 
 export default function Privacy() {
     return(
@@ -12,8 +12,9 @@ export default function Privacy() {
                     <div className="mb-20 pt-12">
                         <div className="flex flex-row justify-center">
                             <div className="xmd:w-8/12 xsm:w-10/12 legal-styles">
+                            <div className="container 2xsm:mx-4 mx-auto">
                                 <h1 className="text-5xl text-center pb-10">Privacy Policy</h1> 
-                                <p className="text-xs pb-4">Last updated: March 07, 2023</p> 
+                                <p className="text-sm pb-4">Last updated: March 07, 2023</p> 
                                 <p className="pt-4">This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your
                                     information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
                                 <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection
@@ -332,7 +333,7 @@ export default function Privacy() {
                                 <ul>
                                     <li>By email: operations@digitaltimes.africa</li>
                                 </ul>
-    
+                                </div>
                             </div>
                         </div>
                     </div>
