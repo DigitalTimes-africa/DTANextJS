@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import XMark from "@/assets/img/icons/x_mark.svg"
@@ -7,9 +9,8 @@ import { useEffect, useState } from "react"
 export default function PopUpFloat() {
     const [popUpOpen, setPopUpOpen] = useState(true)
     const [aceptedPrivacy, setAcceptedPrivacy] = useState(true)
-
+        const getAcceptedStatus = typeof window !== 'undefined' && localStorage.getItem('notAcptdCP') === null
     useEffect(() => {
-        const getAcceptedStatus = !localStorage.getItem('notAcptdCP') ?? true
         setAcceptedPrivacy(getAcceptedStatus)
         setPopUpOpen(getAcceptedStatus)
     }, [])

@@ -9,7 +9,7 @@ import PopUpFloat from '@/components/PopUpFloat';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata = {
   title: 'Digital Times',
   description: 'Digital Times Africa is a multimedia agency that provides a platform promoting African innovation. We curate relevant and credible content for startups, entrepreneurs and technology lovers in Africa.',
 }

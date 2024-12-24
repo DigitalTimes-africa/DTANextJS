@@ -1,3 +1,5 @@
+"use client";
+
 import BackToTop from './BackToTop'
 import { createElement, useState } from 'react'
 
